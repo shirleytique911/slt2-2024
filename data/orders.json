@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "createdAt": "2021-01-01T00:00:00.0002",
+        "items": [
+            {
+                "productId": 1,
+                "quantity": 1,
+                "size": 8
+            },
+            {
+                "productId": 2,
+                "quantity": 1,
+                "size": 9
+            }
+        ],
+        "totalPrice": 250000
+    },
+    {
+        "id": 2,
+        "userId": 1,
+        "createdAt": "2022-01-01T00:00:00.0002",
+        "items": [
+            {
+                "productId": 1,
+                "quantity": 1,
+                "size": 8
+            },
+            {
+                "productId": 2,
+                "quantity": 1,
+                "size": 9
+            }
+        ],
+        "totalPrice": 100000
+    },
+    {
+        "id": 3,
+        "userId": 1,
+        "createdAt": "2024-05-05T00:00:00.0002",
+        "items": [
+            {
+                "productId": 1,
+                "quantity": 1,
+                "size": 8
+            },
+            {
+                "productId": 2,
+                "quantity": 1,
+                "size": 9
+            }
+        ],
+        "totalPrice": 250000
+    }
+]

@@ -1,20 +1,37 @@
+import { useCallback, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { Navigator } from './navigation/navigator';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 export default function App() {
+  const [screen, setScreen] = useState({ path: 'welcome', params: null})
+  const [fontsLoaded, fontError] = useFonts({
+    'Unbounded': require('./assets/fonts/Unbounded.ttf'),
+  })
+
+  const navigate = screen => setScreen(screen)
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <StatusBar backgroundColor='white' style='dark'/>
+        <Navigator />
+      </SafeAreaProvider>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+

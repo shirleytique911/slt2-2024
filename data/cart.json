@@ -1,0 +1,18 @@
+[    
+  {
+    "id": 77,
+    "brand": "adidas",
+    "model": "Ultraboost 21",
+    "price": 180,
+    "image": "https://images.stockx.com/360/adidas-Ultra-Boost-2021-Triple-Black/Images/adidas-Ultra-Boost-2021-Triple-Black/Lv2/img01.jpg",
+    "quantity": 1
+  },
+  {
+    "id": 22,
+    "brand": "nike",
+    "model": "Air Zoom Pegasus 38",
+    "price": 120,
+    "image": "https://images.stockx.com/360/adidas-Ultra-Boost-2021-Triple-Black/Images/adidas-Ultra-Boost-2021-Triple-Black/Lv2/img01.jpg",
+    "quantity": 1
+  }
+]

@@ -1,6 +1,6 @@
 import { baseUrl } from "../firebase/database";
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { objectToArray } from "../utils/array";
+import { objectToArray, objectToArrays } from "../utils/array";
 
 export const shopApi = createApi({
     reducerPath: 'shopApi',
@@ -13,13 +13,24 @@ export const shopApi = createApi({
         getCategories: builder.query({
             query: () => 'categories.json',
         }),
+        getOrdersByUser: builder.query({
+            query: user => `orders.json?orderBy="user"&equalTo="${user}"`,
+            transformResponse: response => objectToArrays(response)
+        }),
         postOrder: builder.mutation({
             query: order => ({
               url: 'orders.json',
               method: 'POST',
               body: order,
             }),
-    }),
+        }),
+    })
 })
 
-export const { useGetProductsByCategoryQuery, useGetCategoriesQuery } = shopApi
+export const 
+{ 
+    useGetProductsByCategoryQuery, 
+    useGetCategoriesQuery, 
+    usePostOrderMutation, 
+    useGetOrdersByUserQuery
+} = shopApi

@@ -1,12 +1,15 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import { CartItem } from '../components/cartitem'
 import { formatPrice } from '../utils/price'
-import { removeItem } from '../features/cart/cartSlice'
+import { removeItem, removeAll } from '../features/cart/cartSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { usePostOrderMutation } from '../services/shopService'
 import { Button } from "../components/button"
+import { useNavigation } from '@react-navigation/native'
 export const Cart = () => {
+    const { navigate } = useNavigation()
     const dispatch = useDispatch()
+    const user = useSelector(state => state.cart.value.user)
     const items = useSelector(state => state.cart.value.items)
     const total = useSelector(state => state.cart.value.total)
     const [triggerPost, result] = usePostOrderMutation()
@@ -18,7 +21,10 @@ export const Cart = () => {
       }
     
       const confirmOrder = () => {
-        triggerPost({ items, total, user })
+        const date = new Date().toISOString().split('T')[0];
+        triggerPost({ items, total, user,date })
+        dispatch(removeAll())
+        navigate('OrdersTab')
       }
 
     return (

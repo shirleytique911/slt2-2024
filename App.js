@@ -3,9 +3,11 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { Navigator } from './navigation/navigator';
+//import { Navigator } from './navigation/tabNavigator';
+import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { MainNavigator } from './navigation/mainNavigator'
 
 export default function App() {
   const [screen, setScreen] = useState({ path: 'welcome', params: null})
@@ -27,8 +29,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <StatusBar backgroundColor='white' style='dark'/>
-        <Navigator />
+      <NavigationContainer>
+        <StatusBar backgroundColor='white' style='dark' />
+        <MainNavigator />
+        </NavigationContainer>
       </SafeAreaProvider>
     </Provider>
   );

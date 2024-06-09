@@ -8,8 +8,6 @@ import { loginSchema } from '../validations/loginSchema'
 import { useDispatch } from 'react-redux';
 import { setUser } from '../features/auth/authSlice';
 
-
-
 export const Login = () => {
   const { navigate } = useNavigation()
   const dispatch = useDispatch();
@@ -19,9 +17,14 @@ export const Login = () => {
   
   const handleLogin = async () => {
     try {
-        await loginSchema.validate({ email, password });
-  
+        loginSchema.validate({ 
+          email, password 
+        });
+
         const result = await triggerLogin({ email, password }).unwrap();
+        //si se desea acceder directamente al valor devuelto por la promesa 
+        //(es decir, el resultado de la operación asincrónica) después de que el Thunk 
+        //se haya ejecutado, se puede utilizar .unwrap().
         if (result) {
            dispatch(setUser({ data: result }));
         }

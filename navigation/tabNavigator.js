@@ -5,10 +5,12 @@ import { ShopStack } from "./shopStack";
 import { CartStack } from "./cartStack";
 import { Cart } from "../icons/cart";
 import { Shop } from "../icons/shop";
+import { Person } from "../icons/person";
 import { OrdersStack } from "./ordersStack";
 import { Order } from "../icons/order";
 import { ListsStack } from "./listsStack";
 import { List } from "../icons/list";
+import { MyProfileStack } from "./myProfileStack";
 
 const { Screen, Navigator } = createBottomTabNavigator()
 
@@ -51,6 +53,14 @@ export const TabNavigator = () => (
           title: 'Ordenes',
           tabBarIcon: ({ color }) => <Order color={color} />,
         }}
+      />
+      <Screen
+        name='ProfileTab'
+        component={MyProfileStack}
+        options={{
+          title: 'Perfil',
+          tabBarIcon: ({ color }) => <Person color={color} />,
+      }}
       />
     </Navigator>
 )

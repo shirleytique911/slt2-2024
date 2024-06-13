@@ -10,7 +10,7 @@ export const Lists = () => {
     }
 
     return (
-    <View style={styles.cart}>
+    <View style={styles.list}>
         <FlatList 
             contentContainerStyle={{ gap: 32 }}
             data={list}
@@ -22,9 +22,8 @@ export const Lists = () => {
 }
 
 const styles = StyleSheet.create({
-    cart: {
+    list: {
         minHeight: '100%',
-        backgroundColor: 'white',
         padding: 16,
     },
     total: {

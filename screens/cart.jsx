@@ -63,7 +63,6 @@ export const Cart = () => {
 const styles = StyleSheet.create({
     cart: {
         minHeight: '100%',
-        backgroundColor: 'white',
         padding: 16,
     },
     total: {

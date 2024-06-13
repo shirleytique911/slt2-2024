@@ -2,7 +2,6 @@ import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-nativ
 import { useSelector } from 'react-redux';
 import { useGetOrdersByUserQuery } from '../services/shopService';
 import { OrderItem } from "../components/orderItem";
-import { useEffect } from 'react'
 
 export const Orders = () => {
     const userData = useSelector(state => state.auth.value.user)

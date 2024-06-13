@@ -29,7 +29,6 @@ export const MyProfile = () => {
 const styles = StyleSheet.create({
   myProfile: {
     alignItems: 'center',
-    backgroundColor: 'white',
     flex: 1,
     gap: 32,
     justifyContent: 'center',

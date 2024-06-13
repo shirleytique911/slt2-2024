@@ -17,7 +17,7 @@ export const MyProfileStack = () => {
       <Screen
         name={'MyProfile'}
         component={MyProfile}
-        options={{ headerTitle: 'Perfil' }}
+        options={{ headerTitle: 'Perfil', headerTitleAlign: 'center' }}
       />
       <Screen
         name={'ImageSelector'}

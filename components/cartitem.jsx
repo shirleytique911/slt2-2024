@@ -1,5 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import { formatPrice } from '../utils/price'
+import { Delete } from '../icons/delete'
 
 export const CartItem = ({id, author, title, quantity, price, image, onDelete}) => (
     <View style={styles.cartItem}>
@@ -12,7 +13,7 @@ export const CartItem = ({id, author, title, quantity, price, image, onDelete}) 
             <Text>Cantidad: {quantity}</Text>
             <Text>{formatPrice(price)}</Text>
             <Pressable style={styles.delete} onPress={() => onDelete(id)}>
-                <Text style={styles.deleteText}>Eliminar</Text>
+                <Text style={styles.deleteText}><Delete /></Text>
             </Pressable>
         </View>
     </View>
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         paddingVertical: 8,
         borderRadius: 8,
-        backgroundColor: 'red',
+        backgroundColor: 'gray',
         width: 96,
         alignItems: 'center',
     },

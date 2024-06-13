@@ -6,12 +6,13 @@ import { useDispatch } from 'react-redux'
 import { setCameraImage } from '../features/auth/authSlice'
 import { useNavigation } from '@react-navigation/native'
 import { usePostProfileImageMutation } from '../services/shopService'
+import { useSelector } from 'react-redux'
 
 export const ImageSelector = () => {
   const [image, setImage] = useState(null)
   const { goBack } = useNavigation()
   const dispatch = useDispatch()
-  const localId = 'qdoqwdoioim'
+  const localId = useSelector(state => state.auth.value.user.localId)
   const [triggerSaveProfileImage] = usePostProfileImageMutation()
   const [isSavingProfileImage, setIsSavingProfileImage] = useState(false)
 
@@ -48,7 +49,6 @@ export const ImageSelector = () => {
       setIsSavingProfileImage(true)
       dispatch(setCameraImage(image))
       const result = await triggerSaveProfileImage({ image, localId })
-      console.log(result)
       goBack()
     } catch (error) {
       console.log(error)

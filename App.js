@@ -7,7 +7,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { MainNavigator } from './navigation/mainNavigator'
+import { init } from './db'
 
+init()
+  .then(() => console.log('Database initialized'))
+  .catch(err => console.error('Database initialization failed', err))
+  
 export default function App() {
   const [screen, setScreen] = useState({ path: 'welcome', params: null })
   const [fontsLoaded, fontError] = useFonts({

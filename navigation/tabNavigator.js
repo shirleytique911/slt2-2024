@@ -27,7 +27,7 @@ export const TabNavigator = () => (
         component={ShopStack}
         options={{
           title: 'Tienda',
-          tabBarIcon: ({ color }) => <Shop color={color} />,
+          tabBarIcon: ({ color }) => <Shop fill={color} />,
         }}
       />
       <Screen 
@@ -43,7 +43,7 @@ export const TabNavigator = () => (
         component={CartStack}
         options={{
           title: 'Carrito',
-          tabBarIcon: ({ color }) => <Cart color={color} />,
+          tabBarIcon: ({ color }) => <Cart fill={color} />,
         }}
       />
       <Screen
@@ -51,7 +51,7 @@ export const TabNavigator = () => (
         component={OrdersStack}
         options={{
           title: 'Ordenes',
-          tabBarIcon: ({ color }) => <Order color={color} />,
+          tabBarIcon: ({ color }) => <Order fill={color} />,
         }}
       />
       <Screen
@@ -59,7 +59,7 @@ export const TabNavigator = () => (
         component={MyProfileStack}
         options={{
           title: 'Perfil',
-          tabBarIcon: ({ color }) => <Person color={color} />,
+          tabBarIcon: ({ color }) => <Person fill={color} />,
       }}
       />
     </Navigator>

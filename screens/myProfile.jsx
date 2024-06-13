@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 export const MyProfile = () => {
   const { navigate } = useNavigation()
-  const imageCamera = useSelector(state => state.auth.value.imageCamera)
+  const { email, photo } = useSelector(state => state.auth.value.user)
 
   const goToImageSelector = () => navigate('ImageSelector')
 
@@ -15,7 +15,7 @@ export const MyProfile = () => {
     <View style={styles.myProfile}>
       <Image
         source={
-          imageCamera ? { uri: imageCamera } : require('../assets/myProfile/profile_placeholder.png')
+          photo ? { uri: photo } : require('../assets/myProfile/profile_placeholder.png')
         }
         resizeMode='cover'
         style={styles.image}

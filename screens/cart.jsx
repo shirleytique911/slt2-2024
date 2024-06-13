@@ -3,29 +3,41 @@ import { CartItem } from '../components/cartitem'
 import { formatPrice } from '../utils/price'
 import { removeItem, removeAll } from '../features/cart/cartSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { usePostOrderMutation } from '../services/shopService'
+import { useGetOrdersByUserQuery, usePostOrderMutation } from '../services/shopService'
 import { Button } from "../components/button"
 import { useNavigation } from '@react-navigation/native'
 export const Cart = () => {
     const { navigate } = useNavigation()
     const dispatch = useDispatch()
-    const user = useSelector(state => state.cart.value.user)
+
+    const userData = useSelector(state => state.auth.value.user)
+    const user = userData.email
     const items = useSelector(state => state.cart.value.items)
     const total = useSelector(state => state.cart.value.total)
+    const { data: orders, error, isLoading, refetch } = useGetOrdersByUserQuery(user);
     const [triggerPost, result] = usePostOrderMutation()
 
     const cartIsEmpty = items.length === 0
 
     const handleDelete = item => {
-        dispatch(removeItem(item))
-      }
+      dispatch(removeItem(item))
+    }
     
-      const confirmOrder = () => {
-        const date = new Date().toISOString().split('T')[0];
-        triggerPost({ items, total, user,date })
-        dispatch(removeAll())
-        navigate('OrdersTab')
-      }
+    const confirmOrder = () => {
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      };
+      
+      const today = new Date();
+      const todayFormat =today.toLocaleDateString('es-CL', options)
+      triggerPost({ items, total, user,date: todayFormat })
+      dispatch(removeAll())
+      refetch()
+      navigate('OrdersTab')
+    }
 
     return (
     <View style={styles.cart}>

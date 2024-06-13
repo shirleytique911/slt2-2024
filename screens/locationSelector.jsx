@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { setUserLocation } from '../features/auth/authSlice'
 import { useNavigation } from '@react-navigation/native'
 import { MapPreview } from '../components/mapPreview'
+import { useSelector } from 'react-redux'
 
 export const LocationSelector = () => {
   const [address, setAddress] = useState('')
@@ -15,7 +16,7 @@ export const LocationSelector = () => {
   const [error, setError] = useState('')
   const hasLocation = location.latitude && location.longitude
   const [triggerPostUserLocation] = usePostUserLocationMutation()
-  const localId = 'qdoqwdoioim'
+  const localId = useSelector(state => state.auth.value.user.localId)
   const dispatch = useDispatch()
   const { goBack } = useNavigation()
   const [isSavingLocation, setIsSavingLocation] = useState(false)

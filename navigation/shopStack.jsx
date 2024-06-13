@@ -3,12 +3,15 @@ import { Home } from '../screens/home';
 import { Welcome } from '../screens/welcome';
 import { ItemListCategories } from '../screens/itemListCategories';
 import { ItemDetail } from '../screens/itemDetail';
+import { Logout } from '../icons/logout'
 
 const { Navigator: StackNavigator, Screen: StackScreen } = createNativeStackNavigator()
 export const ShopStack = () => (
 
         <StackNavigator screenOptions={{
-            headerTitleStyle: { fontFamily: 'Unbounded'}}}
+            headerTitleStyle: { fontFamily: 'Unbounded'},
+            headerRight: () => <Logout />,
+        }}
         >
             <StackScreen name='Welcome' component={Welcome} options={{
                     headerShown: false,

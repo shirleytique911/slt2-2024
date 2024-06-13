@@ -1,6 +1,7 @@
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StyleSheet } from 'react-native';
 import { Categories } from '../components/categories';
+import { useSelector } from 'react-redux';
 
 export const Home = () => {
   return (

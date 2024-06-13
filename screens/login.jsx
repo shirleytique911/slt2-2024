@@ -7,6 +7,8 @@ import { useState } from 'react'
 import { loginSchema } from '../validations/loginSchema'
 import { useDispatch } from 'react-redux';
 import { setUser } from '../features/auth/authSlice';
+import { insertSession } from '../db'
+import { useEffect } from 'react'
 
 export const Login = () => {
   const { navigate } = useNavigation()
@@ -14,26 +16,33 @@ export const Login = () => {
   const [triggerLogin, result] = useLoginMutation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   
   const handleLogin = async () => {
     try {
-        loginSchema.validate({ 
-          email, password 
-        });
-
-        const result = await triggerLogin({ email, password }).unwrap();
-        //si se desea acceder directamente al valor devuelto por la promesa 
-        //(es decir, el resultado de la operación asincrónica) después de que el Thunk 
-        //se haya ejecutado, se puede utilizar .unwrap().
-        if (result) {
-           dispatch(setUser({ data: result }));
-        }
-      } catch (error) {
-        console.error('Login error:', error);
-      }
+      setIsLoading(true)
+      loginSchema.validate({
+        email,
+        password
+      })
+      await triggerLogin({ email, password })
+    } catch (error) {
+      console.error('Error en la solicitud de ingreso:', error)
+      Alert.alert('Error', 'Correo o contraseña incorrectos')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const goToSignUp = () => navigate('SignUp')
+
+  useEffect(() => {
+    if (result.data) {
+      const { email, localId, idToken: token } = result.data
+      dispatch(setUser({ email, localId, token }))
+      insertSession({ email, localId, token })
+    }
+  }, [result.data])
 
   return (
     <View style={styles.login}>
@@ -52,7 +61,9 @@ export const Login = () => {
             onChangeText={setPassword}
             value={password}
         />
-        <Button onPress={handleLogin}>Ingresar</Button>
+        <Button onPress={handleLogin}>
+          {isLoading ? 'Ingresando...' : 'Ingresar'}
+        </Button>
       </View>
       <View style={styles.section}>
         <Text>Aun no tienes cuenta?</Text>

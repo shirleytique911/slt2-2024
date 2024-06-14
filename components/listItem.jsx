@@ -3,7 +3,7 @@ import { formatPrice } from '../utils/price'
 import { Delete } from '../icons/delete'
 
 export const ListItem = ({image, price, title, pages, editorial, onDelete}) => (
-    <View style={styles.cartItem}>
+    <View style={styles.listItem}>
         <Image style={styles.image} source={{ uri: image}} 
                 resizeMode="contain"/>
         <View style={styles.info}>
@@ -19,7 +19,7 @@ export const ListItem = ({image, price, title, pages, editorial, onDelete}) => (
 )
 
 const styles = StyleSheet.create({
-    cartItem: {
+    listItem: {
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 16,

@@ -5,17 +5,28 @@ import { SearchInput } from "../components/searchInput"
 import { useEffect, useState } from "react"
 import { useFocusEffect, useNavigation } from "@react-navigation/native"
 import { useSelector } from "react-redux"
-import { useGetProductsByCategoryQuery } from "../services/shopService"
+import { useGetProductsByCategoryQuery, useGetProductsByWishlistQuery, usePostWishListMutation } from "../services/shopService"
+
 
 export const ItemListCategories = () => {
   const { navigate, setOptions } = useNavigation()
   const [textToSearch, setTextToSearch] = useState('')
   const category = useSelector(state => state.shop.categorySelected)
-  const { data: products, isLoading, error } = useGetProductsByCategoryQuery(category)
+  const { data: products, isLoading, error} = useGetProductsByCategoryQuery(category)
   const [productsFiltered, setProductsFiltered] = useState(products)
+  const [triggerPostList, result] = usePostWishListMutation()
+  const userData = useSelector(state => state.auth.value.user)
+  const localId = userData.localId
+  const { data: list, refetch} = useGetProductsByWishlistQuery(localId);
 
+  
   const navigateToItemDetails = productId => {
     navigate('ItemDetail', { productId });
+  };
+  const handleListProduct = async item => {
+    triggerPostList({ list: item,localId, productId: item.id })
+    refetch()
+    navigate('ListsTab')
   };
 
   const capitalizeCategory = categoryToCapitalize => {
@@ -58,11 +69,12 @@ export const ItemListCategories = () => {
           <ProductItem
             {...item}
             onPress={() => navigateToItemDetails(item.id)}
+            onSvgPress={() => handleListProduct(item)}
           />}
       />
       {productsFiltered && productsFiltered.length === 0 ? (
         <Text>
-          No se han encontrado zapatillas con la búsqueda "{textToSearch}"
+          No se han encontrado libros con la búsqueda "{textToSearch}"
         </Text>
       ) : null}
     </SafeAreaView>

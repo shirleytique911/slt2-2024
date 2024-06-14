@@ -1,17 +1,18 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import { formatPrice } from '../utils/price'
+import { Delete } from '../icons/delete'
 
-export const ListItem = ({id, brand, model, onDelete, price, image}) => (
+export const ListItem = ({image, price, title, pages, editorial, onDelete}) => (
     <View style={styles.cartItem}>
         <Image style={styles.image} source={{ uri: image}} 
                 resizeMode="contain"/>
         <View style={styles.info}>
-            <Text>{id}</Text>
-            <Text>{brand}</Text>
-            <Text>{model}</Text>
             <Text>{formatPrice(price)}</Text>
-            <Pressable style={styles.delete} onPress={() => onDelete(id)}>
-                <Text style={styles.deleteText}>Eliminar</Text>
+            <Text>{title}</Text>
+            <Text>páginas: {pages}</Text>
+            <Text>{editorial}</Text>
+            <Pressable style={styles.delete} onPress={onDelete}>
+                <Text style={styles.deleteText}><Delete /></Text>
             </Pressable>
         </View>
     </View>
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         paddingVertical: 8,
         borderRadius: 8,
-        backgroundColor: 'red',
+        backgroundColor: 'gray',
         width: 96,
         alignItems: 'center',
     },

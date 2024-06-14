@@ -44,6 +44,23 @@ export const shopApi = createApi({
               body: { ...location },
             }),
         }),
+        postWishList: builder.mutation({
+          query: ({ list, localId, productId }) => ({
+            url: `wishlist/${localId}/products/${productId}.json`,
+            method: 'PUT',
+            body: { ...list },
+          }),
+      }),
+        getProductsByWishlist: builder.query({
+          query: localId => `wishlist/${localId}/products.json`,
+          transformResponse: response => objectToArray(response)
+        }),
+        deleteProductFromWishlist: builder.mutation({
+          query: ({ localId, productId }) => ({
+            url: `wishlist/${localId}/products/${productId}.json`,
+            method: 'DELETE',
+          }),
+        }),
     })
 })
 
@@ -57,4 +74,7 @@ export const
     usePostProfileImageMutation,
     useGetUserLocationQuery,
     usePostUserLocationMutation,
+    usePostWishListMutation, 
+    useGetProductsByWishlistQuery,
+    useDeleteProductFromWishlistMutation,
 } = shopApi

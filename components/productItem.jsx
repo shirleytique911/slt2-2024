@@ -3,8 +3,8 @@ import { theme } from "../configs/theme"
 import { formatPrice } from "../utils/price"
 import { List } from "../icons/list"
 
-export const ProductItem = ({firebaseId, id,title, author, description,pages, editorial, price, image,onPress, onSvgPress}) => {
-    //const svgFillColor = isLists === 0 ? 'gray' : 'red';
+export const ProductItem = ({ title, author, description,pages, editorial, price, image,onPress, onSvgPress}) => {
+
     return (
         <Pressable style={styles.productItem} onPress={onPress}>
             <View style={styles.imageContainer}>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     svg: {
         position: 'absolute',
         right: 16,
-        bottom: 130,  // Ajusta esta posición según necesites
+        bottom: 130, 
     },
     info: {
         gap: 4,

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { Button } from '../components/button'
 import { useDispatch } from 'react-redux'
-import { setCameraImage } from '../features/auth/authSlice'
+import { setCameraImage, setUserPhoto } from '../features/auth/authSlice'
 import { useNavigation } from '@react-navigation/native'
 import { usePostProfileImageMutation } from '../services/shopService'
 import { useSelector } from 'react-redux'
@@ -48,6 +48,7 @@ export const ImageSelector = () => {
     try {
       setIsSavingProfileImage(true)
       dispatch(setCameraImage(image))
+      dispatch(setUserPhoto(image))
       const result = await triggerSaveProfileImage({ image, localId })
       goBack()
     } catch (error) {

@@ -1,14 +1,12 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
 import { Button } from '../components/button'
 import { useNavigation } from '@react-navigation/native'
 import { useSelector } from 'react-redux'
 
 export const MyProfile = () => {
   const { navigate } = useNavigation()
-  const { email, photo } = useSelector(state => state.auth.value.user)
-
+  const { photo } = useSelector(state => state.auth.value.user)
   const goToImageSelector = () => navigate('ImageSelector')
-
   const goToMyLocation = () => navigate('MyLocation')
 
   return (

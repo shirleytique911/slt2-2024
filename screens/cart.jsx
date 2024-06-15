@@ -14,7 +14,7 @@ export const Cart = () => {
     const user = userData.email
     const items = useSelector(state => state.cart.value.items)
     const total = useSelector(state => state.cart.value.total)
-    const { data: orders, error, isLoading, refetch } = useGetOrdersByUserQuery(user);
+    const { data: orders, refetch } = useGetOrdersByUserQuery(user);
     const [triggerPost, result] = usePostOrderMutation()
 
     const cartIsEmpty = items.length === 0

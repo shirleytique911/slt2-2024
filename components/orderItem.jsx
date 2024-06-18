@@ -17,5 +17,8 @@ const styles = StyleSheet.create({
         padding: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });

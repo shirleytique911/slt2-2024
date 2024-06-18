@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native"
+import { ActivityIndicator, FlatList, StyleSheet, Text, View, useWindowDimensions } from "react-native"
 import { ProductItem } from "../components/productItem"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { SearchInput } from "../components/searchInput"
@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { useFocusEffect, useNavigation } from "@react-navigation/native"
 import { useSelector } from "react-redux"
 import { useGetProductsByCategoryQuery, useGetProductsByWishlistQuery, usePostWishListMutation } from "../services/shopService"
+import { BREAKPOINTS } from "../utils/breakpoint"
 
 
 export const ItemListCategories = () => {
@@ -18,6 +19,8 @@ export const ItemListCategories = () => {
   const userData = useSelector(state => state.auth.value.user)
   const localId = userData.localId
   const { data: list, refetch} = useGetProductsByWishlistQuery(localId);
+  const { width } = useWindowDimensions()
+  const styles = createStyles(width)
 
   
   const navigateToItemDetails = productId => {
@@ -81,7 +84,7 @@ export const ItemListCategories = () => {
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = deviceWidth => StyleSheet.create({
   list: {
     gap: 32,
   },
@@ -89,13 +92,7 @@ const styles = StyleSheet.create({
     gap: 32,
     flex: 1,
     paddingTop: -40,
-    paddingHorizontal: 16,
     paddingBottom: 16,
+    paddingHorizontal: deviceWidth >= BREAKPOINTS.MEDIUM ? '30%' : 16,
   },
-  brand: {
-    fontFamily: 'Unbounded',
-    fontSize: 18,
-    textTransform: 'capitalize',
-    textAlign: 'center'
-  }
 })

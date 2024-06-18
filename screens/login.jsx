@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native'
 import { Input } from '../components/input'
 import { Button } from '../components/button'
 import { useNavigation } from '@react-navigation/native'
@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../features/auth/authSlice';
 import { insertSession } from '../db'
 import { useEffect } from 'react'
+import { BREAKPOINTS } from '../utils/breakpoint'
 
 export const Login = () => {
   const { navigate } = useNavigation()
@@ -17,6 +18,8 @@ export const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const { width } = useWindowDimensions()
+  const styles = createStyles(width)
   
   const handleLogin = async () => {
     try {
@@ -45,38 +48,46 @@ export const Login = () => {
   }, [result.data])
 
   return (
-    <View style={styles.login}>
-      <View style={styles.section}>
-        <Text style={styles.title}>Bienvenido a ViajesLit</Text>
-        <Input 
-            label='Correo electronico' 
-            placeholder='correo@viajeslit.com'
-            onChangeText={setEmail}
-            value={email} 
-        />
-        <Input 
-            label='Contraseña' 
-            placeholder='******' 
-            secureTextEntry
-            onChangeText={setPassword}
-            value={password}
-        />
-        <Button onPress={handleLogin}>
-          {isLoading ? 'Ingresando...' : 'Ingresar'}
-        </Button>
-      </View>
-      <View style={styles.section}>
-        <Text>Aun no tienes cuenta?</Text>
-        <Button onPress={goToSignUp}>Registrate</Button>
+    <View style={styles.container}>
+      <View style={styles.login}>
+        <View style={styles.section}>
+          <Text style={styles.title}>Bienvenido a ViajesLit</Text>
+          <Input 
+              label='Correo electronico' 
+              placeholder='correo@viajeslit.com'
+              onChangeText={setEmail}
+              value={email} 
+          />
+          <Input 
+              label='Contraseña' 
+              placeholder='******' 
+              secureTextEntry
+              onChangeText={setPassword}
+              value={password}
+          />
+          <Button onPress={handleLogin}>
+            {isLoading ? 'Ingresando...' : 'Ingresar'}
+          </Button>
+        </View>
+        <View style={styles.section}>
+          <Text>Aun no tienes cuenta?</Text>
+          <Button onPress={goToSignUp}>Registrate</Button>
+        </View>
       </View>
     </View>
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = deviceWidth => StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
   login: {
     minHeight: '100%',
-    width: '100%',
+    width: deviceWidth <= BREAKPOINTS.MEDIUM ? '100%' : '30%',
     backgroundColor: 'white',
     padding: 16,
     justifyContent: 'center',

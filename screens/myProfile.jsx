@@ -1,4 +1,4 @@
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, StyleSheet, View, Text } from 'react-native'
 import { Button } from '../components/button'
 import { useNavigation } from '@react-navigation/native'
 import { useSelector } from 'react-redux'
@@ -6,11 +6,13 @@ import { useSelector } from 'react-redux'
 export const MyProfile = () => {
   const { navigate } = useNavigation()
   const { photo } = useSelector(state => state.auth.value.user)
+  const emailUser = useSelector(state => state.auth.value.user.email)
   const goToImageSelector = () => navigate('ImageSelector')
   const goToMyLocation = () => navigate('MyLocation')
 
   return (
     <View style={styles.myProfile}>
+      <Text style={styles.emailText}>{emailUser}</Text>
       <Image
         source={
           photo ? { uri: photo } : require('../assets/myProfile/profile_placeholder.png')
@@ -35,5 +37,9 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
     borderRadius: 50,
+  },
+  emailText: {
+    fontSize: 18,
+    fontFamily: 'Unbounded'
   },
 })

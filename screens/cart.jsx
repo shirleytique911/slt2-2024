@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View, useWindowDimensions } from 'react-native'
 import { CartItem } from '../components/cartitem'
 import { formatPrice } from '../utils/price'
 import { removeItem, removeAll } from '../features/cart/cartSlice'
@@ -6,16 +6,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useGetOrdersByUserQuery, usePostOrderMutation } from '../services/shopService'
 import { Button } from "../components/button"
 import { useNavigation } from '@react-navigation/native'
+import { BREAKPOINTS } from '../utils/breakpoint'
 export const Cart = () => {
     const { navigate } = useNavigation()
     const dispatch = useDispatch()
-
     const userData = useSelector(state => state.auth.value.user)
     const user = userData.email
     const items = useSelector(state => state.cart.value.items)
     const total = useSelector(state => state.cart.value.total)
     const { data: orders, refetch } = useGetOrdersByUserQuery(user);
     const [triggerPost, result] = usePostOrderMutation()
+    const { width } = useWindowDimensions()
+    const styles = createStyles(width)
 
     const cartIsEmpty = items.length === 0
 
@@ -45,7 +47,7 @@ export const Cart = () => {
             contentContainerStyle={{ gap: 32 }}
             data={items}
             renderItem={({item}) => <CartItem {...item} onDelete={() => handleDelete(item)}/>}
-            ListEmptyComponent={<Text>No hay productos en el carrito</Text>}
+            ListEmptyComponent={<Text style={styles.emptyText}>No hay productos en el carrito</Text>}
         />
         <View style={styles.total}>
             <Text style={styles.totalText}>Total</Text>
@@ -60,7 +62,7 @@ export const Cart = () => {
     )
 }
 
-const styles = StyleSheet.create({
+const createStyles = deviceWidth => StyleSheet.create({
     cart: {
         minHeight: '100%',
         padding: 16,
@@ -68,10 +70,15 @@ const styles = StyleSheet.create({
     total: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 16,
+        paddingHorizontal: deviceWidth >= BREAKPOINTS.MEDIUM ? '30%' : 16,
     },
     totalText: {
         fontSize: 18,
         fontFamily: 'Unbounded'
-    }
+    },
+    emptyText:{
+      textAlign: 'center',
+      justifyContent: 'center',
+      fontSize: deviceWidth >= BREAKPOINTS.MEDIUM ? 18 : 16,
+  },
 })

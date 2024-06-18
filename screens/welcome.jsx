@@ -10,7 +10,7 @@ export const Welcome = () => {
   }
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Image source={require('../assets/Welcome/libros.png')} />
+      <Image source={require('../assets/Welcome/libros.jpg')} />
       <View style={styles.texts}>
         <Text style={styles.title}>ViajesLit</Text>
         <Text style={styles.text}>Viaja a través de las palabras.</Text>

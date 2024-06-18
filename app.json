@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/Welcome/libros.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,7 +21,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.bastsrojasexpo.appstore"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -30,9 +31,16 @@
       [
         "expo-font",
         {
-          "fonts": ["../assets/fonts/Unbounded.ttf"]
+          "fonts": [
+            "./assets/fonts/Unbounded.ttf"
+          ]
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "04a7fe74-cb20-48d2-82c6-5f842fc45ace"
+      }
+    }
   }
 }

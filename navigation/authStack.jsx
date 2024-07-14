@@ -6,7 +6,7 @@ const { Navigator, Screen } = createNativeStackNavigator()
 
 export const AuthStack = () => (
   <Navigator initialRouteName={'Login'} screenOptions={{ headerShadowVisible: false,
-    headerTitle: 'ViajesLit', headerTitleAlign: 'center', headerTitleStyle: { fontFamily: 'Unbounded'}
+    headerTitle: 'SportZone7', headerTitleAlign: 'center', headerTitleStyle: { fontFamily: 'Unbounded'}
   }}>
     <Screen name={'Login'} component={Login} />
     <Screen name={'SignUp'} component={SignUp}/>

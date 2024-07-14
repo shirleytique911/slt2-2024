@@ -51,10 +51,10 @@ export const Login = () => {
     <View style={styles.container}>
       <View style={styles.login}>
         <View style={styles.section}>
-          <Text style={styles.title}>Bienvenido a ViajesLit</Text>
+          <Text style={styles.title}>Bienvenido a SportZone7</Text>
           <Input 
               label='Correo electronico' 
-              placeholder='correo@viajeslit.com'
+              placeholder='shirley@SportZone7.com'
               onChangeText={setEmail}
               value={email} 
           />

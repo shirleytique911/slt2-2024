@@ -7,12 +7,12 @@
             {
                 "productId": 1,
                 "quantity": 1,
-                "size": 8
+                "size": "XS"
             },
             {
                 "productId": 2,
                 "quantity": 1,
-                "size": 9
+                "size": "S"
             }
         ],
         "totalPrice": 250000
@@ -25,12 +25,12 @@
             {
                 "productId": 1,
                 "quantity": 1,
-                "size": 8
+                "size": "M"
             },
             {
                 "productId": 2,
                 "quantity": 1,
-                "size": 9
+                "size": "XL"
             }
         ],
         "totalPrice": 100000
@@ -43,12 +43,12 @@
             {
                 "productId": 1,
                 "quantity": 1,
-                "size": 8
+                "size": "L"
             },
             {
                 "productId": 2,
                 "quantity": 1,
-                "size": 9
+                "size": "XXL"
             }
         ],
         "totalPrice": 250000

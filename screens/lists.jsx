@@ -25,7 +25,7 @@ export const Lists = () => {
                     data={list}
                     key={item => item.id}
                     renderItem={({item}) => <ListItem {...item} onDelete={() => handleDelete(item.id)}/>}
-                    ListEmptyComponent={<Text style={styles.emptyText}>No hay productos en lista de deseos</Text>}
+                    ListEmptyComponent={<Text style={styles.emptyText}>No hay productos..</Text>}
                 />       
             </View>
         </View>

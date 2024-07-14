@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "app-store",
-    "slug": "app-store",
+    "name": "sportZona7",
+    "slug": "sportZona7",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/Welcome/libros.jpg",
+      "image": "./assets/Welcome/images.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

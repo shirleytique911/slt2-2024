@@ -8,7 +8,7 @@ export const ListsStack = () =>{
             headerTitleStyle: { fontFamily: 'Unbounded'}}}>
             <StackScreen name='Lists' component={Lists}
                 options={{
-                    headerTitle: 'Lista de Deseos',
+                    headerTitle: 'Tu Lista ',
                     headerTitleAlign: 'center',
                     headerShadowVisible: false,
                 }}

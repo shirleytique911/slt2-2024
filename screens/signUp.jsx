@@ -54,7 +54,7 @@ export const SignUp = () => {
         <Input
           error={errorEmail}
           label='Correo electronico'
-          placeholder='correo@viajeslit.com'
+          placeholder='shirley@SportZone7.com'
           onChangeText={setEmail}
           value={email}
         />

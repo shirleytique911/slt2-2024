@@ -20,7 +20,7 @@ export const Categories = () => {
 
     return (
         <View style={styles.categories}>
-            <Text style={styles.text}>Géneros Literarios</Text>
+            <Text style={styles.text}>Tu Estilo</Text>
             {
                 isLoading ? (
                     <View style={styles.categoriesLoading}>

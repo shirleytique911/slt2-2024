@@ -1,3 +1,3 @@
-export const baseUrl  = 'https://viajeslit-default-rtdb.firebaseio.com'
-export const apiKey = 'AIzaSyAIDNYGnTiMeLFq6z143IpzQb7nr8LYg9U'
+export const apiKey = 'AIzaSyA44c6VeDSpsvcE5wvUbQiDkMmvRwxHWqE'
 export const authUrl = 'https://identitytoolkit.googleapis.com/'
+export const baseUrl = 'https://slt-online-default-rtdb.firebaseio.com/'

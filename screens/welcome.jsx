@@ -10,10 +10,10 @@ export const Welcome = () => {
   }
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Image source={require('../assets/Welcome/libros.jpg')} />
+      <Image source={require('../assets/Welcome/images.jpg')} />
       <View style={styles.texts}>
-        <Text style={styles.title}>ViajesLit</Text>
-        <Text style={styles.text}>Viaja a través de las palabras.</Text>
+        <Text style={styles.title}>SportZone7</Text>
+        <Text style={styles.text}>Tu Rendimiento Deportivo...</Text>
       </View>
       <Button onPress={handlePress}>Descubrir</Button>
     </SafeAreaView>

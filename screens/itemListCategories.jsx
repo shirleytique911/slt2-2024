@@ -62,7 +62,7 @@ export const ItemListCategories = () => {
     <SafeAreaView style={styles.itemListCategories}>
       <SearchInput
         onChangeText={handleSearch} value={textToSearch}
-        placeholder='Buscar libros aqui....'
+        placeholder='Buscar  aqui....'
       />
       <FlatList
         data={productsFiltered}

@@ -1,18 +1,20 @@
-[    
+[
   {
-    "id": 77,
-    "brand": "adidas",
-    "model": "Ultraboost 21",
-    "price": 180,
-    "image": "https://images.stockx.com/360/adidas-Ultra-Boost-2021-Triple-Black/Images/adidas-Ultra-Boost-2021-Triple-Black/Lv2/img01.jpg",
-    "quantity": 1
+    "id": 1,
+    "brand": "Camisetas",
+    "model": "2024",
+    "image": "https://www.futbolred.com/files/article_main/uploads/2024/01/18/65a9ab316daf8.jpeg",
+    "price": 150.000,
+    "quantity": 1,
+    "shirt size": 16
   },
   {
-    "id": 22,
-    "brand": "nike",
-    "model": "Air Zoom Pegasus 38",
-    "price": 120,
-    "image": "https://images.stockx.com/360/adidas-Ultra-Boost-2021-Triple-Black/Images/adidas-Ultra-Boost-2021-Triple-Black/Lv2/img01.jpg",
-    "quantity": 1
+    "id": 2,
+    "brand": "club orgullo",
+    "model": "2023",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9fUNA_0dMUlDWYo4E9n1jMo33vbsD4bNxOm_ydN6d_k1BOtJVNMzIEnrfElpH0zVqAdwG4XVmzRp0RIGZL0JHcirzds54TPeLh-ESX_l-ELXm-4VRxNXPzUUDVFyI-v-n-GsEVK8MKVJHHbeH2zalR-ntp-0IcF5XJkK_NKW7xCuFc9Qlci_otc2ftQ/w608-h640/2023%20def.jpg",
+    "price": 50.000,
+    "quantity": 1,
+    "shirt size": 16
   }
 ]

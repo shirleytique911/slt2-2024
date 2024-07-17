@@ -77,7 +77,7 @@ export const ItemListCategories = () => {
       />
       {productsFiltered && productsFiltered.length === 0 ? (
         <Text>
-          No se han encontrado libros con la búsqueda "{textToSearch}"
+          No se han encontrado el producto "{textToSearch}"
         </Text>
       ) : null}
     </SafeAreaView>

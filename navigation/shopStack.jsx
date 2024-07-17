@@ -39,7 +39,7 @@ export const ShopStack = () => (
                     headerShadowVisible: false,
                     headerShown: true,
                     headerTitleAlign: 'center',
-                    headerTitle: 'Detalle Libro'
+                    headerTitle: 'Detalle '
                 }}
             />
         </StackNavigator>

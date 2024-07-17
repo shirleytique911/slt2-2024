@@ -1,69 +1,70 @@
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native'
-import { Input } from '../components/input'
-import { Button } from '../components/button'
-import { useNavigation } from '@react-navigation/native'
-import { useLoginMutation } from '../services/authService'
-import { useState } from 'react'
-import { loginSchema } from '../validations/loginSchema'
+import { StyleSheet, Text, View, useWindowDimensions, Image } from 'react-native';
+import { Input } from '../components/input';
+import { Button } from '../components/button';
+import { useNavigation } from '@react-navigation/native';
+import { useLoginMutation } from '../services/authService';
+import { useState, useEffect } from 'react';
+import { loginSchema } from '../validations/loginSchema';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../features/auth/authSlice';
-import { insertSession } from '../db'
-import { useEffect } from 'react'
-import { BREAKPOINTS } from '../utils/breakpoint'
+import { insertSession } from '../db';
+import { BREAKPOINTS } from '../utils/breakpoint';
+import WelcomeImage from '../assets/Welcome/entrada.jpg'; // Asegúrate de que la ruta sea correcta
 
 export const Login = () => {
-  const { navigate } = useNavigation()
+  const { navigate } = useNavigation();
   const dispatch = useDispatch();
-  const [triggerLogin, result] = useLoginMutation()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const { width } = useWindowDimensions()
-  const styles = createStyles(width)
+  const [triggerLogin, result] = useLoginMutation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { width } = useWindowDimensions();
+  const styles = createStyles(width);
   
   const handleLogin = async () => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       loginSchema.validate({
         email,
-        password
-      })
-      await triggerLogin({ email, password })
+        password,
+      });
+      await triggerLogin({ email, password });
     } catch (error) {
-      console.error('Error en la solicitud de ingreso:', error)
-      Alert.alert('Error', 'Correo o contraseña incorrectos')
+      console.error('Error en la solicitud de ingreso:', error);
+      Alert.alert('Error', 'Correo o contraseña incorrectos');
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
-  const goToSignUp = () => navigate('SignUp')
+  const goToSignUp = () => navigate('SignUp');
 
   useEffect(() => {
     if (result.data) {
-      const { email, localId, idToken: token } = result.data
-      dispatch(setUser({ email, localId, token }))
-      insertSession({ email, localId, token })
+      const { email, localId, idToken: token } = result.data;
+      dispatch(setUser({ email, localId, token }));
+      insertSession({ email, localId, token });
     }
-  }, [result.data])
+  }, [result.data]);
 
   return (
     <View style={styles.container}>
       <View style={styles.login}>
+        <Image source={WelcomeImage} style={styles.logo} />
         <View style={styles.section}>
           <Text style={styles.title}>Bienvenido a SportZone7</Text>
-          <Input 
-              label='Correo electronico' 
-              placeholder='shirley@SportZone7.com'
-              onChangeText={setEmail}
-              value={email} 
+          <Input
+            label='Correo electronico'
+            placeholder='shirley@SportZone7.com'
+            onChangeText={setEmail}
+            value={email}
           />
-          <Input 
-              label='Contraseña' 
-              placeholder='******' 
-              secureTextEntry
-              onChangeText={setPassword}
-              value={password}
+          <Input
+            label='Contraseña'
+            placeholder='******'
+            secureTextEntry
+            onChangeText={setPassword}
+            value={password}
           />
           <Button onPress={handleLogin}>
             {isLoading ? 'Ingresando...' : 'Ingresar'}
@@ -75,8 +76,8 @@ export const Login = () => {
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const createStyles = deviceWidth => StyleSheet.create({
   container: {
@@ -102,4 +103,11 @@ const createStyles = deviceWidth => StyleSheet.create({
     fontFamily: 'Unbounded',
     fontSize: 24,
   },
-})
+  logo: {
+    width: deviceWidth <= BREAKPOINTS.MEDIUM ? 200 : 150,
+    height: deviceWidth <= BREAKPOINTS.MEDIUM ? 200 : 150,
+    resizeMode: 'contain',
+    marginBottom: 32,
+    borderRadius: deviceWidth <= BREAKPOINTS.MEDIUM ? 100 : 75, // Ajustar el borde redondeado según el tamaño
+  },
+});

@@ -24,7 +24,7 @@ export const Categories = () => {
             {
                 isLoading ? (
                     <View style={styles.categoriesLoading}>
-                        <ActivityIndicator size="small" color="#0000ff" />
+                        <ActivityIndicator size="small" color='#fff' />
                         <Text>Cargando categorías...</Text>
                     </View>
                 ) : (

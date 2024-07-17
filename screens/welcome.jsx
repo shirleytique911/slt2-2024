@@ -13,9 +13,9 @@ export const Welcome = () => {
       <Image source={require('../assets/Welcome/images.jpg')} />
       <View style={styles.texts}>
         <Text style={styles.title}>SportZone7</Text>
-        <Text style={styles.text}>Tu Rendimiento Deportivo...</Text>
+        <Text style={styles.text}>Tu Zona Deportiva, Tu Rendimiento Elevado</Text>
       </View>
-      <Button onPress={handlePress}>Descubrir</Button>
+      <Button onPress={handlePress}>Ingresar</Button>
     </SafeAreaView>
   )
 }
